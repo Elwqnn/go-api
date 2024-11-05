@@ -1,0 +1,10 @@
+server:
+  port: "8080"
+
+database:
+  host: "localhost"
+  user: "your_user"
+  password: "your_password"
+  name: "your_db"
+  port: "5432"
+  sslmode: "disable"

@@ -1,0 +1,9 @@
+# IDE
+.idea
+.vscode
+
+# Swagger docs
+docs
+
+# Server config
+config.yaml
