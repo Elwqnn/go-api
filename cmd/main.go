@@ -9,7 +9,6 @@ import (
 	"log"
 
 	"go-api/config"
-	_ "go-api/docs"
 	"go-api/internal/auth"
 	"go-api/internal/controllers"
 	"go-api/internal/models"
