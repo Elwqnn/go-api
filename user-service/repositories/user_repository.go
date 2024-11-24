@@ -10,17 +10,16 @@ import (
 type UserRepository interface {
 	Create(user *models.User) error
 	FindByID(id uint) (*models.User, error)
+	FindByEmail(email string) (*models.User, error)
 	FindAll() ([]models.User, error)
 	Update(user *models.User) error
 	Delete(id uint) error
 }
 
-// userRepository is a concrete implementation of UserRepository
 type userRepository struct {
 	db *gorm.DB
 }
 
-// NewUserRepository creates a new UserRepository
 func NewUserRepository(db *gorm.DB) UserRepository {
 	return &userRepository{db: db}
 }
@@ -32,6 +31,12 @@ func (r *userRepository) Create(user *models.User) error {
 func (r *userRepository) FindByID(id uint) (*models.User, error) {
 	var user models.User
 	err := r.db.First(&user, id).Error
+	return &user, err
+}
+
+func (r *userRepository) FindByEmail(email string) (*models.User, error) {
+	var user models.User
+	err := r.db.Where("email = ?", email).First(&user).Error
 	return &user, err
 }
 

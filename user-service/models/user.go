@@ -2,12 +2,11 @@ package models
 
 import "time"
 
-// User represents the user model
 type User struct {
-	ID        uint      `json:"id" gorm:"primaryKey;autoIncrement"`
+	ID        uint      `json:"id" gorm:"primaryKey"`
 	Name      string    `json:"name"`
 	Email     string    `json:"email" gorm:"unique;not null"`
-	Password  string    `json:"-"` // Exclude from JSON responses
+	Password  string    `json:"-"`
 	CreatedAt time.Time `json:"created_at" gorm:"autoCreateTime"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"autoUpdateTime"`
 }
