@@ -14,7 +14,6 @@ type UserController struct {
 	service services.UserService
 }
 
-// NewUserController creates a new UserController
 func NewUserController(service services.UserService) *UserController {
 	return &UserController{service: service}
 }
@@ -86,6 +85,11 @@ func (c *UserController) DeleteUser(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	if _, err := c.service.GetUserByID(uint(id)); err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return
 	}
 

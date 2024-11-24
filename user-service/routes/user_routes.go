@@ -7,8 +7,8 @@ import (
 )
 
 // RegisterUserRoutes registers user-related routes
-func RegisterUserRoutes(router *gin.Engine, userController *controllers.UserController) {
-	userGroup := router.Group("/users")
+func RegisterUserRoutes(protected *gin.RouterGroup, userController *controllers.UserController) {
+	userGroup := protected.Group("/users")
 	{
 		userGroup.POST("/", userController.CreateUser)
 		userGroup.GET("/", userController.GetAllUsers)
